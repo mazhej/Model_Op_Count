@@ -65,8 +65,3 @@ for hook in hookF:
     print('---'*17)
     print('\n')
 print(tot_num_ops)
-# print('***'*3+'  Backward Hooks Inputs & Outputs  '+'***'*3)
-# for hook in hookB:             
-#     print(hook.input)          
-# #     print(hook.output)         
-# #     print('---'*17)
