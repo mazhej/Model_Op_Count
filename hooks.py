@@ -43,6 +43,8 @@ model = models.resnet18(pretrained=True)
 # register hooks on each layer
 hookF = [Hook(layer) for layer in list(model.modules())]
 
+#Creat a function to load an image and change it to tensor.
+#later on, this data will be passed to our model
 def data_loader():
     im_object =Image.open("/home/maziar/WA/exampleofhooks/cat_224.jpg")
     normalize = transforms.Normalize(
@@ -53,11 +55,11 @@ def data_loader():
     data= normalize(to_tensor(scaler(im_object))).unsqueeze(0)
     return data
 
-
+#get the output of the model and save it
 out = model(data_loader())
 
  
-
+#print number of operations
 print('***'*3+'  Forward Hooks Inputs & Outputs  '+'***'*3)
 tot_num_ops = 0
 for hook in hookF:
