@@ -65,4 +65,4 @@ for hook in hookF:
     tot_num_ops = tot_num_ops + hook.num_ops
     print('---'*17)
     print('\n')
-print(tot_num_ops)
+print(f'the total number of conv operations: {tot_num_ops}')
