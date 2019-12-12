@@ -66,6 +66,7 @@ TORCHVISION_MODEL_NAMES = sorted(
                             if name.islower() and not name.startswith("__")
                             and callable(models.__dict__[name]))
 
+#choosing our desired pre trainded model as backbone
 model = models.resnet50(pretrained=True)
 #model = getattr(models, 'mobilenet_v2')(pretrained=True)
 #model = EfficientNet.from_pretrained('efficientnet-b7')
@@ -85,9 +86,6 @@ dataa = normalize(to_tensor(scaler(im_object))).unsqueeze(0)
 
 out = model(dataa)
 
-#out.backward(torch.tensor([1,1],dtype=torch.float),retain_graph=True)
-#! loss.backward(retain_graph=True)  # doesn't work with backward hooks, 
-#! since it's not a network layer but an aggregated result from the outputs of last layer vs target 
 
 print('***'*3+'  Forward Hooks Inputs & Outputs  '+'***'*3)
 tot_num_mac = 0
@@ -110,8 +108,4 @@ print(f"total num of multiplcation is {tot_num_mult}")
 print(f"total num of comparison in Maxpool is {tot_num_comp}")
 #print(f"total num of add in AvgPool is {tot_num_add_avg}")
 
-# print('***'*3+'  Backward Hooks Inputs & Outputs  '+'***'*3)
-# for hook in hookB:             
-#     print(hook.input)          
-# #     print(hook.output)         
-# #     print('---'*17)
+
