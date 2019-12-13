@@ -23,7 +23,7 @@ import torchvision.models as models
 from efficientnet_pytorch import EfficientNet
 
 
-
+# A simple hook class that returns the input and output of a layer during forward/backward pass
 class Hook():
     def __init__(self, module):
         self.hook = module.register_forward_hook(self.hook_fn)
@@ -35,7 +35,7 @@ class Hook():
         
     def hook_fn(self, module, input, output):
 
-
+#calculating the number of multiplacation and addition for convolution layer
         if isinstance(module, nn.Conv2d):
             output_size = output.shape[0] * output.shape[1] * output.shape[2] * output.shape[3]
             num_ops_per_one_output = (module.in_channels / module.groups) * module.kernel_size[1] * module.kernel_size[0]
@@ -43,12 +43,13 @@ class Hook():
             self.num_mult = int(self.num_mac)
             self.num_add = int(self.num_mac)
 
-
+#calculating the number of multiplacation and addition for max pool layer
         if isinstance(module, nn.MaxPool2d):
             output_size = output.shape[0] * output.shape[1] * output.shape[2] * output.shape[3]
             num_compar_per_output_max =  module.kernel_size * module.kernel_size
             self.num_comp = num_compar_per_output_max * output_size
 
+#calculating the number of multiplacation and addition for avg pool layer
         if isinstance(module, nn.AdaptiveAvgPool2d):
             output_size = output.shape[0] * output.shape[1] * output.shape[2] * output.shape[3]
             num_compar_per_output_max =  input[0].shape[2] * input[0].shape[3]
