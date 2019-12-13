@@ -24,6 +24,7 @@ import torchvision.models as models
 from efficientnet_pytorch import EfficientNet
 from Hook import *
 
+#getting all pretrained models from torch
 TORCHVISION_MODEL_NAMES = sorted(
                             name for name in models.__dict__
                             if name.islower() and not name.startswith("__")
@@ -33,7 +34,7 @@ TORCHVISION_MODEL_NAMES = sorted(
 model = models.resnet50(pretrained=True)
 #model = getattr(models, 'mobilenet_v2')(pretrained=True)
 #model = EfficientNet.from_pretrained('efficientnet-b7')
-#################################################################################
+
 # register hooks on each layer
 hookF = [Hook(layer) for layer in list(model.modules())]
 
