@@ -40,8 +40,7 @@ model = models.resnet18(pretrained=True)
 
 #####
 
-# register hooks on each layer
-#hookF = [Hook(layer) for layer in list(model.modules())]
+
 hookF = {}
 for name, module in model.named_modules():
     hookF[name] = Hook(module)
@@ -61,9 +60,6 @@ def data_loader(path="/home/maziar/WA/exampleofhooks/cat_224.jpg"):
 #feed our data to our model
 out = model(data_loader())
 
-#out.backward(torch.tensor([1,1],dtype=torch.float),retain_graph=True)
-#! loss.backward(retain_graph=True)  # doesn't work with backward hooks, 
-#! since it's not a network layer but an aggregated result from the outputs of last layer vs target 
 
 #define a function to seperate every 3 digits by a comma
 def group(number):
