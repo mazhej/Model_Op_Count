@@ -102,8 +102,3 @@ print(f"total num of multiplcation is {group(tot_num_mult)}")
 print(f"total num of comparison in Maxpool is {group(tot_num_comp)}")
 #print(f"total num of add in AvgPool is {tot_num_add_avg}")
 
-# print('***'*3+'  Backward Hooks Inputs & Outputs  '+'***'*3)
-# for hook in hookB:             
-#     print(hook.input)          
-# #     print(hook.output)         
-# #     print('---'*17)
