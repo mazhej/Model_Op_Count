@@ -46,7 +46,7 @@ for name, module in model.named_modules():
     hookF[name] = Hook(module)
 
 #define a function to read an image and change it tensor
-def data_loader(path="/home/maziar/WA/exampleofhooks/cat_224.jpg"):
+def data_loader(path):
     im_object =Image.open(path)
     normalize = transforms.Normalize(
                 mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
