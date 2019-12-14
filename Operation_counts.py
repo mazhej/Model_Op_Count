@@ -1,4 +1,3 @@
- #https://www.kaggle.com/sironghuang/understanding-pytorch-hooks
 import requests
 from PIL import *
 from PIL import Image
@@ -22,6 +21,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
 from efficientnet_pytorch import EfficientNet
+
 from Hook import *
 
 
