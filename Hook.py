@@ -36,6 +36,9 @@ class Hook():
         self.output_size = []
         self.kernel_size = []
         self.padding_size = []
+        self.zero = 0
+        self.percentage = 0
+        
         
         
 
@@ -52,6 +55,12 @@ class Hook():
             self.num_mac = num_ops_per_one_output * output_size
             self.num_mult = int(self.num_mac)
             self.num_add = int(self.num_mac)
+            
+            for param in input:
+                if param is not None:
+                    self.zero += param.numel() - param.nonzero().size(0)
+            self.percentage =  (self.zero / (input[0].shape[2] * input[0].shape[3] * input[0].shape[1] * input[0].shape[0])) *100
+            
 
 
         if isinstance(module, nn.MaxPool2d):
