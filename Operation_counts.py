@@ -82,7 +82,8 @@ for key, value in hookF.items():
     print(f'kernel size: {value.kernel_size}')
     print(f'padding: {value.padding_size}')
     print(f"output size: {value.output_size}")
-    print(group(value.num_mac))
+    print(f'sparsity: {value.percentage}%')
+    print(f'Number of ops for this layer: {group(value.num_mac)}')
     tot_num_mac = tot_num_mac + value.num_mac
     tot_num_add += value.num_add
     tot_num_mult += value.num_mult
