@@ -58,7 +58,8 @@ def data_loader(path):
     return data
 
 #feed data to our model
-out = model(data_loader())
+path = " a path to your photo"
+out = model(data_loader(path))
 
 
 #define a function to seperate every 3 digits by a comma
