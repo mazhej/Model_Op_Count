@@ -40,12 +40,12 @@ model = models.resnet18(pretrained=True)
 
 #####
 
-
+#create a dictionary of module names
 hookF = {}
 for name, module in model.named_modules():
     hookF[name] = Hook(module)
 
-#define a function to read an image and change it tensor
+#define a function to read an image and change it to a tensor
 def data_loader(path):
     im_object =Image.open(path)
     normalize = transforms.Normalize(
@@ -57,12 +57,12 @@ def data_loader(path):
     data = normalize(to_tensor(scaler(im_object))).unsqueeze(0)
     return data
 
-#feed our data to our model
+#feed data to our model
 out = model(data_loader())
 
 
 #define a function to seperate every 3 digits by a comma
-def group(number):
+def group_digit(number):
     s = '%d' % number
     groups = []
     while s and s[-1].isdigit():
@@ -83,7 +83,7 @@ for key, value in hookF.items():
     print(f'padding: {value.padding_size}')
     print(f"output size: {value.output_size}")
     print(f'sparsity: {value.percentage}%')
-    print(f'Number of ops for this layer: {group(value.num_mac)}')
+    print(f'Number of ops for this layer: {group_digit(value.num_mac)}')
     tot_num_mac = tot_num_mac + value.num_mac
     tot_num_add += value.num_add
     tot_num_mult += value.num_mult
@@ -93,9 +93,9 @@ for key, value in hookF.items():
     
     print('---'*17)
     print('\n')
-print(f"total num of mac is {group(tot_num_mac)}")
-print(f"total num of add is {group(tot_num_add)}")
-print(f"total num of multiplcation is {group(tot_num_mult)}")
-print(f"total num of comparison in Maxpool is {group(tot_num_comp)}")
+print(f"total num of mac is {group_digit(tot_num_mac)}")
+print(f"total num of add is {group_digit(tot_num_add)}")
+print(f"total num of multiplcation is {group_digit(tot_num_mult)}")
+print(f"total num of comparison in Maxpool is {group_digit(tot_num_comp)}")
 #print(f"total num of add in AvgPool is {tot_num_add_avg}")
 
