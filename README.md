@@ -12,5 +12,5 @@ This project has been implemented in [Pytorch](https://pytorch.org/) using GPU. 
 ```
 git clone https://github.com/mazhej/Model_Op_Count.git
 ```
-The main part of this project used Hooks technique to register input and output. To learn more about how to register a hook in pytorch you can refer to this [LINK](https://pytorch.org/tutorials/beginner/former_torchies/nnft_tutorial.html?highlight=hooks)
+The main part of this project used Hooks technique to register input and output. To learn more about how to register a hook in pytorch you can refer to this [LINK](https://pytorch.org/tutorials/beginner/former_torchies/nnft_tutorial.html?highlight=hooks).
 
