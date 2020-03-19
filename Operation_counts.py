@@ -1,4 +1,3 @@
-
 from PIL import *
 from PIL import Image
 import os
@@ -51,7 +50,7 @@ def data_loader(path):
     return data
 
 #feed data to our model
-path = " a path to your photo"
+path = "/home/maziar/WA/exampleofhooks/5.jpg"
 out = model(data_loader(path))
 
 

@@ -1,13 +1,7 @@
- #https://www.kaggle.com/sironghuang/understanding-pytorch-hooks
-#import requests
 from PIL import *
 from PIL import Image
-#import argparse
+
 import os
-#import random
-#import shutil
-# import time
-# import warnings
 
 import torch
 import torch.nn as nn
@@ -35,14 +29,13 @@ TORCHVISION_MODEL_NAMES = sorted(
 
 
 #select our desired model
-#model = models.resnet50(pretrained=True)
-model = getattr(models, 'mobilenet_v2')(pretrained=True)
+model = models.resnet50(pretrained=True)
+#model = getattr(models, 'mobilenet_v2')(pretrained=True)
 #model = EfficientNet.from_pretrained('efficientnet-b7')
 
 #####
 
 # register hooks on each layer
-#hookF = [Hook(layer) for layer in list(model.modules())]
 hookF = {}
 for name, module in model.named_modules():
     hookF[name] = statistics(module)
@@ -61,10 +54,6 @@ def data_loader(path="/home/maziar/WA/exampleofhooks/5.jpg"):
 
 #feed our data to our model
 out = model(data_loader())
-
-#out.backward(torch.tensor([1,1],dtype=torch.float),retain_graph=True)
-#! loss.backward(retain_graph=True)  # doesn't work with backward hooks, 
-#! since it's not a network layer but an aggregated result from the outputs of last layer vs target 
 
 #define a function to seperate every 3 digits by a comma
 def group(number):

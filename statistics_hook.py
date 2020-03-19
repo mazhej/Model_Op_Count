@@ -37,7 +37,7 @@ class statistics():
         self.max_input = torch.max(input[0])
         self.min_output = torch.min(output)
         self.max_output = torch.max(output)
-        #self.min_input_list.append(self.min_input.detach().numpy())
+       
     
     def close(self):
         self.hook.remove()
