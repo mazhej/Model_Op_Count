@@ -17,4 +17,5 @@ The main part of this project used Hooks technique to register input and output.
 ### Use
  You can simply run the Operation_counts.py and it should give you a result like the following:
  ![](each_layer_stat.png)
+ ![](total_num_MAC.png)
 
