@@ -14,3 +14,7 @@ git clone https://github.com/mazhej/Model_Op_Count.git
 ```
 The main part of this project used Hooks technique to register input and output. To learn more about how to register a hook in pytorch you can refer to this [LINK](https://pytorch.org/tutorials/beginner/former_torchies/nnft_tutorial.html?highlight=hooks).
 
+### Use
+ You can simply run the Operation_counts.py and it should give you a result like the following:
+ ![](each_layer_stat.png)
+
